@@ -17,41 +17,37 @@ RUN pip install \
     pymongo \
     tangelo
 
-# Create a tangelo user
-RUN useradd -c "tangelo user" -m -d /home/tangelo -s /bin/bash tangelo
-
-# XDATA's proxy can't use the git protocol
-RUN git config --global url."https://".insteadOf git://
-
 # Need to symlink node to nodejs because Ubuntu names things in a way that npm
 # doesn't expect.
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
-# Clone the repo.
-RUN git clone git://github.com/Kitware/clique.git 
-RUN git checkout 6386898049d06bd913c7e60e2028416ba67b20cb
-
-# Install gulp.
+# Install gulp globally.
 RUN npm install -g gulp
 
-# Change ownership of directory to tangelo.
-RUN chown -R tangelo:tangelo clique
-
-# Switch to tangelo user.
+# Create and switch to a tangelo user
+RUN useradd -c "tangelo user" -m -d /home/tangelo -s /bin/bash tangelo
 USER tangelo
 ENV HOME /home/tangelo
+WORKDIR /home/tangelo
 
+# Clone the repo.
+RUN git clone https://github.com/Kitware/clique
 WORKDIR clique
+RUN git checkout cb37f71b78ff03b70b5df3c93aee291f60761ebc
+
+# Change ownership of directory to tangelo.
+#RUN chown -R tangelo:tangelo clique
 
 # Build clique.
 RUN npm install
 RUN gulp
 
 COPY hostip.sh /home/tangelo/hostip.sh
+RUN cp build/site/anb.html build/site/index.html
 
 # Set up KWDemo vars.
 ENV KWDEMO_NAME Clique Demo
-ENV KWDEMO_KEY clique
+ENV KWDEMO_KEY clique-anb
 ENV KWDEMO_SRCURL https://github.com/XDATA-Year-3/clique
 ENV KWDEMO_DESC XDATA Clique graph exploration framework
 ENV KWDEMO_IMG /clique/assets/clique.svg

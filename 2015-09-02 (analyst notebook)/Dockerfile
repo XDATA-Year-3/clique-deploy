@@ -33,7 +33,7 @@ WORKDIR /home/tangelo
 # Clone the repo.
 RUN git clone https://github.com/Kitware/clique
 WORKDIR clique
-RUN git checkout cb37f71b78ff03b70b5df3c93aee291f60761ebc
+RUN git checkout fce1ad6c0abd974639b96fba5a54c8c6624f77d1
 
 # Change ownership of directory to tangelo.
 #RUN chown -R tangelo:tangelo clique

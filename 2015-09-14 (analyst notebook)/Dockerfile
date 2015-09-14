@@ -40,9 +40,6 @@ RUN git clone https://github.com/Kitware/clique && \
     git reset --hard
 WORKDIR clique
 
-# Change ownership of directory to tangelo.
-#RUN chown -R tangelo:tangelo clique
-
 # Build clique.
 RUN npm install
 RUN gulp

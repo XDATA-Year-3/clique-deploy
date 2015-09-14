@@ -30,6 +30,9 @@ USER tangelo
 ENV HOME /home/tangelo
 WORKDIR /home/tangelo
 
+# Use https universally instead of git (comes up during bower phase).
+RUN git config --global url."https://".insteadOf git://
+
 # Clone the repo.
 RUN git clone https://github.com/Kitware/clique
 WORKDIR clique

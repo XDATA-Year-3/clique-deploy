@@ -34,9 +34,11 @@ WORKDIR /home/tangelo
 RUN git config --global url."https://".insteadOf git://
 
 # Clone the repo.
-RUN git clone https://github.com/Kitware/clique
+RUN git clone https://github.com/Kitware/clique && \
+    cd clique && \
+    git checkout fce1ad6c0abd974639b96fba5a54c8c6624f77d1 && \
+    git reset --hard
 WORKDIR clique
-RUN git checkout fce1ad6c0abd974639b96fba5a54c8c6624f77d1
 
 # Change ownership of directory to tangelo.
 #RUN chown -R tangelo:tangelo clique

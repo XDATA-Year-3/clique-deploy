@@ -3,6 +3,6 @@ cat <<EOF
 {
     "host": "${hostip}",
     "database": "clique",
-    "collection": "anb",
+    "collection": "anb"
 }
 EOF

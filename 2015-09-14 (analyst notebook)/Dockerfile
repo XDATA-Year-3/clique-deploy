@@ -53,7 +53,7 @@ RUN cp build/site/anb.html build/site/index.html
 # Set up KWDemo vars.
 ENV KWDEMO_NAME Clique Analyst Notebook
 ENV KWDEMO_KEY clique-anb
-ENV KWDEMO_SRCURL https://github.com/XDATA-Year-3/clique-anb
+ENV KWDEMO_SRCURL https://github.com/XDATA-Year-3/clique
 ENV KWDEMO_DESC XDATA Clique application for exploring Analyst Notebook files
 ENV KWDEMO_IMG /clique/assets/clique.svg
 ENV KWDEMO_READY TRUE

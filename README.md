@@ -9,7 +9,7 @@ infrastructure.  To build a Docker container for a particular deployment:
 1. ``cd`` into the appropriate deployment directory.
 
 2. ``docker build --force-rm -t kitware/<deployment-name> .``  This will build
-   an appropriate Docker container with the name ``kitware/<deployment-name>``,
+   an appropriate Docker image with the name ``kitware/<deployment-name>``,
 which can later be used to invoke the container for management purposes.
 
 3. ``docker run -t -i kitware/<deployment-name> /bin/bash``  If anything goes
@@ -45,7 +45,7 @@ user with something like ``RUN useradd -c "<description of user>" -m -d
 url."https://".insteadOf git://`` will unconditionally use HTTPS instead, which
 should not present the same problem.
 
-* Remember that as each step concludes, Docker creates an intermediary container
+* Remember that as each step concludes, Docker creates an intermediary image
   whose initial file contents are *immutable*.  This means, for instance, if you
 wish to clone a GitHub repository, then check out a particular commit hash, you
 cannot do so in separate Docker commands.  You must instead use ampersands to

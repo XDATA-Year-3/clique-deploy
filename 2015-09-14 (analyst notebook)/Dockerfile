@@ -34,18 +34,17 @@ WORKDIR /home/tangelo
 RUN git config --global url."https://".insteadOf git://
 
 # Clone the repo.
-RUN git clone https://github.com/Kitware/clique && \
-    cd clique && \
-    git checkout fce1ad6c0abd974639b96fba5a54c8c6624f77d1 && \
+RUN git clone https://github.com/XDATA-Year-3/clique-anb && \
+    cd clique-anb && \
+    git checkout 07cb5a9942b799de9e0740853f223e7cad462ea0 && \
     git reset --hard
-WORKDIR clique
+WORKDIR clique-anb
 
 # Build clique.
 RUN npm install
 RUN gulp
 
 COPY hostip.sh /home/tangelo/hostip.sh
-RUN cp build/site/anb.html build/site/index.html
 
 # Set up KWDemo vars.
 ENV KWDEMO_NAME Clique Analyst Notebook

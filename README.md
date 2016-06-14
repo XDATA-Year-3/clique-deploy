@@ -1,2 +1,2 @@
 # clique-deploy
-QCR deployment materials for Clique via Docker
+Deployment materials for Clique via Docker
